@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,8 @@ public class Shoot : MonoBehaviour
     public ParticleSystem ParticleShoot;
     public TargetReshape targetReshape;
     public float duration;
+
+    public LayerMask targetMask;
     private void Start()
     {
     }
@@ -31,7 +34,24 @@ public class Shoot : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ParticleShoot.transform.position = position;
         ParticleShoot.Play();
+        RaycastHit(position);
         isShooting = false;
+    }
+
+    private void RaycastHit(Vector3 pos)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            pos,
+            1f
+        );
+        foreach (Collider2D hit in hits)
+        {
+            CharacterMask mask = hit.GetComponent<CharacterMask>();
+            if( mask != null)
+            {
+                Debug.Log("hit mask : " +  hit.name);
+            }
+        }
     }
 
 }
