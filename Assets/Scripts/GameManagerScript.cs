@@ -19,9 +19,10 @@ public class GameManagerScript : MonoBehaviour
 
     // How many alive characters per mask
     private Dictionary<Mask, int> alivePerMask = new();
-
+    private List<Mask> targetedMask = new();
     private Coroutine maskRoutine;
     private int aliveEntities;
+    public float confianceGains = 3f;
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class GameManagerScript : MonoBehaviour
 
         Instance = this;
         AddRandomMaskToPool();
+        AddTargetedMask(AllMask[0]);
+
     }
 
     private void Start()
@@ -149,42 +152,32 @@ public class GameManagerScript : MonoBehaviour
                 RemoveFromPool(mask);
             }
         }
-
-        UnregisterEntity(character.gameObject);
+        if (targetedMask.Contains(mask)) {
+            confiance.AddConfiance(confianceGains);
+        }
         Destroy(character.gameObject);
     }
 
-
-
-
-
-
-
-
-    public void RegisterEntity(GameObject entity)
+    public void RegisterMask(Mask mask)
     {
         aliveEntities++;
+        alivePerMask[mask]++;
     }
 
-    public void UnregisterEntity(GameObject entity)
+    public void AddTargetedMask(Mask mask)
     {
+        targetedMask.Add(mask);
+    }
+    public void OnCharacterHit(CharacterMask character)
+    {
+        
+        KillCharacter(character);
+
         aliveEntities--;
 
         if (aliveEntities <= 0)
         {
             EndGame();
-        }
-    }
-
-    public void OnCharacterHit(CharacterMask character)
-    {
-        if (character.equippedMask != null)
-        {
-            character.UnequipMask();
-        }
-        else
-        {
-            KillCharacter(character);
         }
     }
 

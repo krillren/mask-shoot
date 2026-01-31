@@ -133,10 +133,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
+  m_fontSize: 72
   m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -191,6 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5700041174553558440}
   - component: {fileID: 4911116083054594132}
+  - component: {fileID: 7313013286134964049}
   m_Layer: 0
   m_Name: DialogBox
   m_TagString: Untagged
@@ -263,7 +264,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 258c0a5f1cd5caa4f839e4891126271a, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 26051ddfa07279b4090cca7754c4fb05, type: 3}
   m_Color: {r: 0.554717, g: 0.554717, b: 0.554717, a: 0.25490198}
   m_FlipX: 0
   m_FlipY: 0
@@ -273,3 +274,15 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &7313013286134964049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787954114565985565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f16f4192bce0143b363ecf1b6355f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

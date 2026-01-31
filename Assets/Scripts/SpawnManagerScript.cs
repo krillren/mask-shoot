@@ -44,12 +44,11 @@ public class SpawnManagerScript : MonoBehaviour
         Vector3 spawnPosition = PositionOnSides(x, y);
 
         GameObject entity = Instantiate(Prefab, spawnPosition,Quaternion.identity);
+        Mask newMask = GameManagerScript.Instance.GetRandomMaskFromPool();
 
-        entity.GetComponent<CharacterMask>().EquipMask(
-            GameManagerScript.Instance.GetRandomMaskFromPool()
-        );
+        entity.GetComponent<CharacterMask>().EquipMask(newMask);
 
-        GameManagerScript.Instance.RegisterEntity(entity);
+        GameManagerScript.Instance.RegisterMask(newMask);
     }
 
     // Creates a random position on the sides of a rectangle of width x and height y
