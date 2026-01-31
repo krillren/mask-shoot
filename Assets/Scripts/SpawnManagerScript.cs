@@ -12,14 +12,13 @@ public class SpawnManagerScript : MonoBehaviour
     public float timeBetweenSpawns = 5;
     private float _timeSinceLastSpawn = 0;
 
-    private List<(Mask mask, float probability)> MasksSpawnPool = new();
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         for (int i = 0; i < _entityCount; ++i)
         {
             SpawnEntity();
+            print("Spawned entity " + i);
         }
     }
 
@@ -46,7 +45,9 @@ public class SpawnManagerScript : MonoBehaviour
 
         GameObject entity = Instantiate(Prefab, spawnPosition,Quaternion.identity);
 
-        entity.GetComponent<CharacterMask>().EquipMask(GetRandomMaskFromPool());
+        entity.GetComponent<CharacterMask>().EquipMask(
+            GameManagerScript.Instance.GetRandomMaskFromPool()
+        );
 
         GameManagerScript.Instance.RegisterEntity(entity);
     }
@@ -70,39 +71,6 @@ public class SpawnManagerScript : MonoBehaviour
             return new Vector3(posOnRectangleLength - x/2, y/2, 0);
         }
         return new Vector3(-x/2, posOnRectangleLength - x - y/2, 0);
-    }
-
-    Mask GetRandomMaskFromPool()
-    {
-        var probabilities = MasksSpawnPool.Select(val => val.probability).ToList();
-
-        for (int i = 1; i < probabilities.Count; ++i)
-        {
-            probabilities[i] += probabilities[i-1];
-        }
-
-        var random = Random.Range(0, probabilities[^1]);
-
-        for (int i = 0; i < probabilities.Count; ++i)
-        {
-            if (probabilities[i] > random)
-            {
-                return MasksSpawnPool[i].mask;
-            }
-        }
-
-        return MasksSpawnPool[^1].mask;
-
-    }
-
-    public void AddToPool(Mask mask, float probability)
-    {
-        MasksSpawnPool.Add((mask, probability));
-    }
-
-    public void RemoveFromPool(Mask mask)
-    {
-        MasksSpawnPool = MasksSpawnPool.Where(val => val.mask != mask).ToList();
     }
 }
 
