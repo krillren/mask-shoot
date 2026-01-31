@@ -47,16 +47,11 @@ public class Shoot : MonoBehaviour
         foreach (Collider2D hit in hits)
         {
             CharacterMask mask = hit.GetComponent<CharacterMask>();
-            if( mask != null)
-            {
-                mask.Hit();
-            }
+            mask?.Hit();
 
             Mechant mechant = hit.GetComponent<Mechant>();
-            if (mechant != null)
-            {
-                mechant.Hit();
-            }
+            mechant?.Hit();
+            
         }
     }
 }
