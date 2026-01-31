@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8009934755118618002}
   - component: {fileID: 4365007706836778069}
   - component: {fileID: 5173443222760111531}
+  - component: {fileID: 7841946316833755004}
   m_Layer: 0
   m_Name: "M\xE9chant"
   m_TagString: Untagged
@@ -138,3 +139,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &7841946316833755004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270240004537818562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75f963637c98b84094978bd141ef993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mechant
+  FirstHit: {fileID: -2413806693520163455, guid: 30d10574c5de05e0d8fffa708051e4aa, type: 3}
+  SecondHit: {fileID: 7482667652216324306, guid: da594c88dfb460c46a5f2efc1b850b73, type: 3}
+  Dead: {fileID: 7482667652216324306, guid: 0db58d25af25cb67d9732525b63f361a, type: 3}
+  CurrentSprite: {fileID: 0}
+  Life: 3

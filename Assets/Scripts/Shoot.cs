@@ -51,6 +51,12 @@ public class Shoot : MonoBehaviour
             {
                 mask.Hit();
             }
+
+            Mechant mechant = hit.GetComponent<Mechant>();
+            if (mechant != null)
+            {
+                mechant.Hit();
+            }
         }
     }
 }

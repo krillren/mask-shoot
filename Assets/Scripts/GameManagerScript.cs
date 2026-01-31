@@ -181,6 +181,11 @@ public class GameManagerScript : MonoBehaviour
         }
     }
 
+    public void KillBadGuy()
+    {
+        EndGame();
+    }
+
     public void EndGame()
     {
         Debug.Log("Game Over");
