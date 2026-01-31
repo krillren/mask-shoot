@@ -197,7 +197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMask
   equippedMask: {fileID: 0}
-  maskSlot: {fileID: 0}
 --- !u!1 &7915043578075576766
 GameObject:
   m_ObjectHideFlags: 0

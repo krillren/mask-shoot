@@ -39,12 +39,17 @@ public class SpawnManagerScript : MonoBehaviour
         Vector3 worldMax = cam.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 
         float x = worldMax.x - worldMin.x;
-        float y = worldMax.y - worldMin.y;  
+        float y = worldMax.y - worldMin.y;
 
         Vector3 spawnPosition = PositionOnSides(x, y);
 
-        GameObject entity = Instantiate(Prefab, spawnPosition,Quaternion.identity);
         Mask newMask = GameManagerScript.Instance.GetRandomMaskFromPool();
+        if (newMask is null)
+        {
+            return;
+        }
+
+        GameObject entity = Instantiate(Prefab, spawnPosition,Quaternion.identity);
 
         entity.GetComponent<CharacterMask>().EquipMask(newMask);
 
