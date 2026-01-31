@@ -66,7 +66,8 @@ public class SpawnManagerScript : MonoBehaviour
 
     }
 
-    public void RemoveFromPool(Mask mask)
+    public void RemoveFromPool(Mask mask, float probability)
     {
     }
 }
+
