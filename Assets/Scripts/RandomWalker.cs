@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RandomWalker : MonoBehaviour
@@ -17,12 +18,16 @@ public class RandomWalker : MonoBehaviour
 
     private float halfWidth;
     private float halfHeight;
+    Animator animator;
+
+    private bool isIdle = false;
+    private float idleDuration = 2f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
-
+        animator = GetComponent<Animator>();
         // Half size of sprite
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         halfWidth = sr.bounds.extents.x;
@@ -40,18 +45,30 @@ public class RandomWalker : MonoBehaviour
         {
             PickRandomDirection();
         }
+        float idleChancePerSecond = 0.1f;
+
+        if (Random.value < idleChancePerSecond * Time.deltaTime)
+        {
+            StartCoroutine(IdleFor(idleDuration));
+        }
 
         // Smoothly rotate moveDirection toward targetDirection
         moveDirection = Vector2.Lerp(moveDirection, targetDirection, turnSpeed * Time.deltaTime).normalized;
-
-        // Rotate rectangle to face movement
-        if (moveDirection != Vector2.zero)
+        if (isIdle) moveDirection = Vector2.zero;
+        if (moveDirection.x != 0)
         {
-            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Sign(moveDirection.x) * Mathf.Abs(scale.x);
+            transform.localScale = scale;
         }
-
+        animator?.SetBool("isWalking", moveDirection != Vector2.zero);
         ScreenWrap();
+    }
+    public IEnumerator IdleFor(float duration)
+    {
+        isIdle = true;
+        yield return new WaitForSeconds(duration);
+        isIdle = false;
     }
 
     void FixedUpdate()
