@@ -6,13 +6,15 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     public static GameManagerScript Instance { get; private set; }
-
+    public MaskTargetDisplay maskTargetDisplay;
+    public MiniSceneManager miniSceneManager;
     public SpawnManagerScript SpawnManagerScript;
     public Confiance confiance;
 
     [Header("Masks")]
     public List<Mask> AllMask;
-    public float maskIntroInterval = 30f;
+    public float maskIntroInterval = 10f;
+   
 
     // (Mask, Probability)
     private List<(Mask mask, float probability)> MasksSpawnPool = new();
@@ -34,7 +36,9 @@ public class GameManagerScript : MonoBehaviour
 
         Instance = this;
         AddRandomMaskToPool();
-        AddTargetedMask(AllMask[0]);
+        AddRandomMaskToPool();
+
+        AddTargetedMask();
 
     }
 
@@ -72,6 +76,7 @@ public class GameManagerScript : MonoBehaviour
         Mask newMask = available[Random.Range(0, available.Count)];
 
         AddToPool(newMask, 1f);
+        AddTargetedMask();
 
         Debug.Log($"New mask added to pool: {newMask.maskName}");
     }
@@ -150,6 +155,7 @@ public class GameManagerScript : MonoBehaviour
             if (alivePerMask[mask] <= 0)
             {
                 RemoveFromPool(mask);
+                RemoveTargetedMask(mask);
             }
         }
         if (targetedMask.Contains(mask)) {
@@ -163,10 +169,29 @@ public class GameManagerScript : MonoBehaviour
         aliveEntities++;
         alivePerMask[mask]++;
     }
-
-    public void AddTargetedMask(Mask mask)
+    private IEnumerator AddTargetCoroutine(float interval)
     {
-        targetedMask.Add(mask);
+        yield return new WaitForSeconds(interval);
+        AddTargetedMask();
+        AddTargetCoroutine(interval);
+    }
+    public void AddTargetedMask()
+    {
+        Mask randomMask = GetRandomMaskFromPool();
+        int i = 0;
+        while (targetedMask.Contains(randomMask) && i<10)
+        {
+            randomMask = GetRandomMaskFromPool();
+            i++;
+        }
+        targetedMask.Add(randomMask);
+        maskTargetDisplay.AddTarget(randomMask);
+    }
+
+    public void RemoveTargetedMask(Mask mask)
+    {
+        targetedMask.Remove(mask);
+        maskTargetDisplay.RemoveTarget(mask);
     }
     public void OnCharacterHit(CharacterMask character)
     {
@@ -189,5 +214,6 @@ public class GameManagerScript : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("Game Over");
+        miniSceneManager.LoadLoose();
     }
 }

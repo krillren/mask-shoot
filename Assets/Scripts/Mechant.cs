@@ -5,6 +5,7 @@ public class Mechant : MonoBehaviour
     public Sprite FirstHit;
     public Sprite SecondHit;
     public Sprite Dead;
+    public TextDialog textDialog;
 
     public Sprite CurrentSprite;
 
@@ -13,6 +14,7 @@ public class Mechant : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        textDialog.ShowText("salut les connardds", 3);
     }
 
     // Update is called once per frame
@@ -29,13 +31,16 @@ public class Mechant : MonoBehaviour
             case 0: 
                 sr.sprite = Dead;
                 GameManagerScript.Instance.KillBadGuy();
-            break;
-            case 1 : 
+                textDialog.ShowText("meurt ", 3);
+                break;
+            case 1 :
+                textDialog.ShowText("arrête !!! ", 3);
                 sr.sprite = SecondHit;
             break;
             case 2 : 
                 sr.sprite = FirstHit;
-            break;
+                textDialog.ShowText("petit fils de pute", 3);
+                break;
         }
     }
 }
