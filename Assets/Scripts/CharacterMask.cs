@@ -33,4 +33,9 @@ public class CharacterMask : MonoBehaviour
             maskVisual = null;
         }
     }
+
+    public void Hit()
+    {
+        
+    }
 }
