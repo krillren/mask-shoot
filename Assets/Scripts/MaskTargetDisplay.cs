@@ -15,12 +15,14 @@ public class MaskTargetDisplay : MonoBehaviour
     {
         //if (maskTargets.Count >= 3) return;
         masksDisplayed.Add(mask);
+        print($"Added mask {mask.name}, ({mask.maskID}) to target display");
         Render(masksDisplayed);
     }
 
     public void RemoveTarget(Mask mask)
     {
         masksDisplayed.Remove(mask);
+        print($"Removed mask {mask.maskName} ({mask.maskID}) from target display");
         Render(masksDisplayed);
     }
 

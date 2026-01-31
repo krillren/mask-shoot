@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80cb1d962f2b3104f898a4a2f79717bf, type: 3}
   m_Name: mask2
   m_EditorClassIdentifier: Assembly-CSharp::Mask
-  maskName: 
-  maskID: 0
+  maskName: Mask 2
+  maskID: 2
   maskSprite: {fileID: 0}

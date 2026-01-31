@@ -16,6 +16,8 @@ public class GameManagerScript : MonoBehaviour
     public float maskIntroInterval = 10f;
    
 
+    private List<Mask> AvailableMasks = new();
+
     // (Mask, Probability)
     private List<(Mask mask, float probability)> MasksSpawnPool = new();
 
@@ -35,6 +37,9 @@ public class GameManagerScript : MonoBehaviour
         }
 
         Instance = this;
+
+        AvailableMasks.AddRange(AllMask);
+
         AddRandomMaskToPool();
         AddRandomMaskToPool();
 
@@ -66,19 +71,20 @@ public class GameManagerScript : MonoBehaviour
 
     private void AddRandomMaskToPool()
     {
-        List<Mask> available = AllMask
-            .Where(m => !MasksSpawnPool.Any(p => p.mask == m))
-            .ToList();
+        //List<Mask> available = AvailableMasks
+        //    .Where(m => !MasksSpawnPool.Any(p => p.mask == m))
+        //    .ToList();
 
-        if (available.Count == 0)
+        if (AvailableMasks.Count == 0)
             return;
 
-        Mask newMask = available[Random.Range(0, available.Count)];
+        Mask newMask = AvailableMasks[Random.Range(0, AvailableMasks.Count)];
+        AvailableMasks.Remove(newMask);
 
         AddToPool(newMask, 1f);
-        AddTargetedMask();
+        //AddTargetedMask();
 
-        Debug.Log($"New mask added to pool: {newMask.maskName}");
+        //Debug.Log($"New mask added to pool: {newMask.maskName}");
     }
 
     
@@ -97,15 +103,18 @@ public class GameManagerScript : MonoBehaviour
             return;
 
         MasksSpawnPool.Add((mask, probability));
+        print($"Adding mask {mask.maskName} ({mask.maskID}) to pool");
+
         alivePerMask[mask] = 0;
     }
 
     public void RemoveFromPool(Mask mask)
     {
-        MasksSpawnPool.RemoveAll(p => p.mask == mask);
+        var removed = MasksSpawnPool.RemoveAll(p => p.mask == mask);
+        print($"Removed {removed} masks from pool ({mask.maskName})");
         alivePerMask.Remove(mask);
 
-        Debug.Log($"Mask removed from pool: {mask.maskName}");
+        //Debug.Log($"Mask removed from pool: {mask.maskName}");
     }
 
     public Mask GetRandomMaskFromPool()
@@ -137,6 +146,7 @@ public class GameManagerScript : MonoBehaviour
     public void RegisterMaskInstance(Mask mask)
     {
         if (mask == null) return;
+        aliveEntities++;
 
         if (!alivePerMask.ContainsKey(mask))
             return; // Mask not in pool anymore
@@ -156,6 +166,7 @@ public class GameManagerScript : MonoBehaviour
             {
                 RemoveFromPool(mask);
                 RemoveTargetedMask(mask);
+                AddTargetedMask();
             }
         }
         if (targetedMask.Contains(mask)) {
@@ -164,11 +175,6 @@ public class GameManagerScript : MonoBehaviour
         Destroy(character.gameObject);
     }
 
-    public void RegisterMask(Mask mask)
-    {
-        aliveEntities++;
-        alivePerMask[mask]++;
-    }
     private IEnumerator AddTargetCoroutine(float interval)
     {
         yield return new WaitForSeconds(interval);
@@ -185,12 +191,14 @@ public class GameManagerScript : MonoBehaviour
             i++;
         }
         targetedMask.Add(randomMask);
+        print($"Adding mask {randomMask.maskName} ({randomMask.maskID}) to target");
         maskTargetDisplay.AddTarget(randomMask);
     }
 
     public void RemoveTargetedMask(Mask mask)
     {
         targetedMask.Remove(mask);
+        print($"Removed mask {mask.name} ({mask.maskID}) from target");
         maskTargetDisplay.RemoveTarget(mask);
     }
     public void OnCharacterHit(CharacterMask character)

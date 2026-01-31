@@ -18,7 +18,7 @@ public class SpawnManagerScript : MonoBehaviour
         for (int i = 0; i < _entityCount; ++i)
         {
             SpawnEntity();
-            print("Spawned entity " + i);
+            //print("Spawned entity " + i);
         }
     }
 
@@ -53,7 +53,7 @@ public class SpawnManagerScript : MonoBehaviour
 
         entity.GetComponent<CharacterMask>().EquipMask(newMask);
 
-        GameManagerScript.Instance.RegisterMask(newMask);
+        GameManagerScript.Instance.RegisterMaskInstance(newMask);
     }
 
     // Creates a random position on the sides of a rectangle of width x and height y

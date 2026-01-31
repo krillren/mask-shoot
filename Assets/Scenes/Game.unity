@@ -838,6 +838,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 993819487}
     - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
+      propertyPath: maskIntroInterval
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
       propertyPath: maskTargetDisplay
       value: 
       objectReference: {fileID: 1838527988}
