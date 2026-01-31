@@ -1,13 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq; 
 
 public class SpawnManagerScript : MonoBehaviour
 {
     public GameObject Prefab;
-    public List<GameObject> Entities;
     public Camera cam;
 
     private int _entityCount = 20;
+
+    public float timeBetweenSpawns = 5;
+    private float _timeSinceLastSpawn = 0;
+
+    private List<(Mask mask, float probability)> MasksSpawnPool = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +26,13 @@ public class SpawnManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _timeSinceLastSpawn += Time.deltaTime;
+
+        if (_timeSinceLastSpawn >= timeBetweenSpawns)
+        {
+            SpawnEntity();
+            _timeSinceLastSpawn -= timeBetweenSpawns;
+        }
     }
 
     void SpawnEntity(){
@@ -35,7 +46,7 @@ public class SpawnManagerScript : MonoBehaviour
 
         GameObject entity = Instantiate(Prefab, spawnPosition,Quaternion.identity);
 
-        Entities.Add(entity);
+        entity.GetComponent<CharacterMask>().EquipMask(GetRandomMaskFromPool());
 
         GameManagerScript.Instance.RegisterEntity(entity);
     }
@@ -61,13 +72,37 @@ public class SpawnManagerScript : MonoBehaviour
         return new Vector3(-x/2, posOnRectangleLength - x - y/2, 0);
     }
 
-    public void AddToPool(Mask mask)
+    Mask GetRandomMaskFromPool()
     {
+        var probabilities = MasksSpawnPool.Select(val => val.probability).ToList();
+
+        for (int i = 1; i < probabilities.Count; ++i)
+        {
+            probabilities[i] += probabilities[i-1];
+        }
+
+        var random = Random.Range(0, probabilities[^1]);
+
+        for (int i = 0; i < probabilities.Count; ++i)
+        {
+            if (probabilities[i] > random)
+            {
+                return MasksSpawnPool[i].mask;
+            }
+        }
+
+        return MasksSpawnPool[^1].mask;
 
     }
 
-    public void RemoveFromPool(Mask mask, float probability)
+    public void AddToPool(Mask mask, float probability)
     {
+        MasksSpawnPool.Add((mask, probability));
+    }
+
+    public void RemoveFromPool(Mask mask)
+    {
+        MasksSpawnPool = MasksSpawnPool.Where(val => val.mask != mask).ToList();
     }
 }
 
