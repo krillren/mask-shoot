@@ -36,6 +36,8 @@ public class SpawnManagerScript : MonoBehaviour
         GameObject entity = Instantiate(Prefab, spawnPosition,Quaternion.identity);
 
         Entities.Add(entity);
+
+        GameManagerScript.Instance.RegisterEntity(entity);
     }
 
     // Creates a random position on the sides of a rectangle of width x and height y

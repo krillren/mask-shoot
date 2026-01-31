@@ -349,9 +349,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1130661872879754467, guid: 7f9d75e670733444f9b392fd13859128, type: 3}
+      propertyPath: radius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130661872879754467, guid: 7f9d75e670733444f9b392fd13859128, type: 3}
       propertyPath: MainCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 1130661872879754467, guid: 7f9d75e670733444f9b392fd13859128, type: 3}
+      propertyPath: duration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130661872879754467, guid: 7f9d75e670733444f9b392fd13859128, type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3414940359747030523, guid: 7f9d75e670733444f9b392fd13859128, type: 3}
       propertyPath: m_Name
       value: ShootHandler

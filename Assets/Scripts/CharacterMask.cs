@@ -36,6 +36,6 @@ public class CharacterMask : MonoBehaviour
 
     public void Hit()
     {
-        
+        GameManagerScript.Instance.OnCharacterHit(this);
     }
 }

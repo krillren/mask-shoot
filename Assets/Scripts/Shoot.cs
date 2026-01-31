@@ -11,7 +11,7 @@ public class Shoot : MonoBehaviour
     public TargetReshape targetReshape;
     public float duration;
 
-    public LayerMask targetMask;
+    public float radius;
     private void Start()
     {
     }
@@ -42,16 +42,15 @@ public class Shoot : MonoBehaviour
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             pos,
-            1f
+            radius
         );
         foreach (Collider2D hit in hits)
         {
             CharacterMask mask = hit.GetComponent<CharacterMask>();
             if( mask != null)
             {
-                Debug.Log("hit mask : " +  hit.name);
+                mask.Hit();
             }
         }
     }
-
 }
