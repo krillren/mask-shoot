@@ -15,6 +15,7 @@ public class GameManagerScript : MonoBehaviour
     public List<Mask> AllMask;
     public float maskIntroInterval = 10f;
    
+   
 
     private List<Mask> AvailableMasks = new();
 

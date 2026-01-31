@@ -51,6 +51,7 @@ public class Shoot : MonoBehaviour
 
             Mechant mechant = hit.GetComponent<Mechant>();
             mechant?.Hit();
+            
         }
     }
 }
