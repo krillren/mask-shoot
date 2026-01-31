@@ -71,10 +71,6 @@ public class GameManagerScript : MonoBehaviour
 
     private void AddRandomMaskToPool()
     {
-        //List<Mask> available = AvailableMasks
-        //    .Where(m => !MasksSpawnPool.Any(p => p.mask == m))
-        //    .ToList();
-
         if (AvailableMasks.Count == 0)
             return;
 
@@ -82,9 +78,6 @@ public class GameManagerScript : MonoBehaviour
         AvailableMasks.Remove(newMask);
 
         AddToPool(newMask, 1f);
-        //AddTargetedMask();
-
-        //Debug.Log($"New mask added to pool: {newMask.maskName}");
     }
 
     
@@ -103,7 +96,6 @@ public class GameManagerScript : MonoBehaviour
             return;
 
         MasksSpawnPool.Add((mask, probability));
-        print($"Adding mask {mask.maskName} ({mask.maskID}) to pool");
 
         alivePerMask[mask] = 0;
     }
@@ -111,10 +103,7 @@ public class GameManagerScript : MonoBehaviour
     public void RemoveFromPool(Mask mask)
     {
         var removed = MasksSpawnPool.RemoveAll(p => p.mask == mask);
-        print($"Removed {removed} masks from pool ({mask.maskName})");
         alivePerMask.Remove(mask);
-
-        //Debug.Log($"Mask removed from pool: {mask.maskName}");
     }
 
     public Mask GetRandomMaskFromPool()
@@ -184,6 +173,12 @@ public class GameManagerScript : MonoBehaviour
     public void AddTargetedMask()
     {
         Mask randomMask = GetRandomMaskFromPool();
+
+        if (randomMask is null)
+        {
+            return;
+        }
+
         int i = 0;
         while (targetedMask.Contains(randomMask) && i<10)
         {
@@ -191,19 +186,16 @@ public class GameManagerScript : MonoBehaviour
             i++;
         }
         targetedMask.Add(randomMask);
-        print($"Adding mask {randomMask.maskName} ({randomMask.maskID}) to target");
         maskTargetDisplay.AddTarget(randomMask);
     }
 
     public void RemoveTargetedMask(Mask mask)
     {
         targetedMask.Remove(mask);
-        print($"Removed mask {mask.name} ({mask.maskID}) from target");
         maskTargetDisplay.RemoveTarget(mask);
     }
     public void OnCharacterHit(CharacterMask character)
     {
-        
         KillCharacter(character);
 
         aliveEntities--;

@@ -18,7 +18,6 @@ public class SpawnManagerScript : MonoBehaviour
         for (int i = 0; i < _entityCount; ++i)
         {
             SpawnEntity();
-            //print("Spawned entity " + i);
         }
     }
 
