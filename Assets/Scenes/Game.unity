@@ -519,6 +519,10 @@ PrefabInstance:
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3521616870055050192, guid: 3bb535fc4495c5c4cb1d55f87fdaafdd, type: 3}
+      propertyPath: m_text
+      value: "Dialogue du m\xE9chant"
+      objectReference: {fileID: 0}
     - target: {fileID: 7270240004537818562, guid: 3bb535fc4495c5c4cb1d55f87fdaafdd, type: 3}
       propertyPath: m_Name
       value: "M\xE9chant"
@@ -579,6 +583,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3bb535fc4495c5c4cb1d55f87fdaafdd, type: 3}
+--- !u!114 &2074753221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7841946316833755004, guid: 3bb535fc4495c5c4cb1d55f87fdaafdd, type: 3}
+  m_PrefabInstance: {fileID: 2074753220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75f963637c98b84094978bd141ef993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mechant
 --- !u!1001 &1265481892744615695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -829,6 +844,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
+      propertyPath: mechant
+      value: 
+      objectReference: {fileID: 2074753221}
     - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
       propertyPath: confiance
       value: 

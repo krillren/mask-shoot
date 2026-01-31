@@ -10,12 +10,13 @@ public class GameManagerScript : MonoBehaviour
     public MiniSceneManager miniSceneManager;
     public SpawnManagerScript SpawnManagerScript;
     public Confiance confiance;
+    public Mechant mechant;
 
     [Header("Masks")]
     public List<Mask> AllMask;
     public float maskIntroInterval = 10f;
    
-   
+
 
     private List<Mask> AvailableMasks = new();
 
@@ -162,6 +163,10 @@ public class GameManagerScript : MonoBehaviour
         if (targetedMask.Contains(mask)) {
             confiance.AddConfiance(confianceGains);
         }
+        else
+        {
+            mechant.WarnForCasualties();
+        }
         Destroy(character.gameObject);
     }
 
@@ -188,12 +193,14 @@ public class GameManagerScript : MonoBehaviour
         }
         targetedMask.Add(randomMask);
         maskTargetDisplay.AddTarget(randomMask);
+        mechant.UpdateNewTargets();
     }
 
     public void RemoveTargetedMask(Mask mask)
     {
         targetedMask.Remove(mask);
         maskTargetDisplay.RemoveTarget(mask);
+        mechant.CongratulateTargetAchieved();
     }
     public void OnCharacterHit(CharacterMask character)
     {
