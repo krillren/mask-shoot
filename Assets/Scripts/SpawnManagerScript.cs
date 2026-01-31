@@ -60,4 +60,13 @@ public class SpawnManagerScript : MonoBehaviour
         }
         return new Vector3(-x/2, posOnRectangleLength - x - y/2, 0);
     }
+
+    public void AddToPool(Mask mask)
+    {
+
+    }
+
+    public void RemoveFromPool(Mask mask)
+    {
+    }
 }
