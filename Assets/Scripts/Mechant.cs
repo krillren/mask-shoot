@@ -8,7 +8,7 @@ public class Mechant : MonoBehaviour
     public TextDialog textDialog;
 
     public Sprite CurrentSprite;
-
+    public SpriteRenderer target_sr;
     public int Life = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,20 +25,20 @@ public class Mechant : MonoBehaviour
     public void Hit()
     {
         Life --;
-        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        
         switch (Life)
         {
-            case 0: 
-                sr.sprite = Dead;
+            case 0:
+                target_sr.sprite = Dead;
                 GameManagerScript.Instance.KillBadGuy();
                 textDialog.ShowText("Soupir", 3);
                 break;
             case 1 :
                 textDialog.ShowText("Arrête ça connard !", 3);
-                sr.sprite = SecondHit;
+                target_sr.sprite = SecondHit;
             break;
-            case 2 : 
-                sr.sprite = FirstHit;
+            case 2 :
+                target_sr.sprite = FirstHit;
                 textDialog.ShowText("C'est pas du vrai boulot, ça ! Il va falloir vous ressaisir, et vite !", 3);
                 break;
         }
