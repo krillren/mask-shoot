@@ -1013,6 +1013,10 @@ PrefabInstance:
       propertyPath: 'AllMask.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 17154e15b0303a946b11ac60615b0d1c, type: 2}
+    - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
+      propertyPath: EntitySpawnAfterTargetChange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7483928190470306818, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
       propertyPath: m_Name
       value: GameManager
