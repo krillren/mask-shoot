@@ -1052,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 1838527988}
     - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
       propertyPath: AllMask.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
       propertyPath: SpawnManagerScript
@@ -1070,6 +1070,18 @@ PrefabInstance:
       propertyPath: 'AllMask.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 17154e15b0303a946b11ac60615b0d1c, type: 2}
+    - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
+      propertyPath: 'AllMask.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: af28793b65f25f76596fb966f59d313b, type: 2}
+    - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
+      propertyPath: 'AllMask.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c9c10f0790cdbd1a8c954c1aa16cd6e, type: 2}
+    - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
+      propertyPath: 'AllMask.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ac9033aebdc6bf5d9b423e9b7b9005f, type: 2}
     - target: {fileID: 5000639358722520614, guid: e7ce8b5e8d9266149a5045c37bc602bc, type: 3}
       propertyPath: EntitySpawnAfterTargetChange
       value: 5
