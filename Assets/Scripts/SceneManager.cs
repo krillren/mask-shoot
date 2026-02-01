@@ -6,7 +6,9 @@ public enum GameScene
     Menu,
     Game,
     Loose,
-    Intro
+    Intro,
+    WinMechantDied,
+    WinCitizensDied
 }
 
 public class MiniSceneManager : MonoBehaviour
@@ -22,4 +24,6 @@ public class MiniSceneManager : MonoBehaviour
     public void LoadIntro() => LoadScene(GameScene.Intro);
     public void LoadGame() => LoadScene(GameScene.Game);
     public void LoadLoose() => LoadScene(GameScene.Loose);
+    public void LoadWinMechantDied() => LoadScene(GameScene.WinMechantDied);
+    public void LoadWinCitizensDied() => LoadScene(GameScene.WinCitizensDied);
 }

@@ -212,16 +212,16 @@ public class GameManagerScript : MonoBehaviour
 
         if (aliveEntities <= 0)
         {
-            EndGame();
+            miniSceneManager.LoadWinCitizensDied();
         }
     }
 
     public void KillBadGuy()
     {
-        EndGame();
+        miniSceneManager.LoadWinMechantDied();
     }
 
-    public void EndGame()
+    public void LoseGame()
     {
         Debug.Log("Game Over");
         miniSceneManager.LoadLoose();
