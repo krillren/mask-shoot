@@ -149,6 +149,14 @@ public class GameManagerScript : MonoBehaviour
     {
         Mask mask = character.equippedMask;
 
+        if (targetedMask.Contains(mask)) {
+            confiance.AddConfiance(confianceGains);
+        }
+        else
+        {
+            mechant.WarnForCasualties();
+        }
+
         if (mask != null && alivePerMask.ContainsKey(mask))
         {
             alivePerMask[mask]--;
@@ -160,13 +168,7 @@ public class GameManagerScript : MonoBehaviour
                 AddTargetedMask();
             }
         }
-        if (targetedMask.Contains(mask)) {
-            confiance.AddConfiance(confianceGains);
-        }
-        else
-        {
-            mechant.WarnForCasualties();
-        }
+        
         Destroy(character.gameObject);
     }
 
