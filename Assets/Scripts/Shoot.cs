@@ -12,6 +12,7 @@ public class Shoot : MonoBehaviour
     public float duration;
 
     public float radius;
+    public GameObject BloodFX;
     private void Start()
     {
     }
@@ -48,6 +49,7 @@ public class Shoot : MonoBehaviour
         {
             CharacterMask mask = hit.GetComponent<CharacterMask>();
             mask?.Hit();
+            if(mask != null ) Instantiate(BloodFX, pos,Quaternion.identity);
 
             Mechant mechant = hit.GetComponent<Mechant>();
             mechant?.Hit();
