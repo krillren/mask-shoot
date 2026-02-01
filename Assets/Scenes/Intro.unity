@@ -1038,11 +1038,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vous avez \xE9t\xE9 assign\xE9 une t\xE2che tr\xE8s sp\xE9ciale. Des terroristes
-    se cachent dans la population, et il faut \xE9liminer la menace qu'ils repr\xE9sentent.
-    Nos agents infiltr\xE9s ont identifi\xE9 le masque qu'ils utilisent pour s'identifier.
-    C'est \xE0 vous de les d\xE9truire ! Mais attention de ne pas faire de victimes
-    innocentes..."
+  m_text: "Vous avez \xE9t\xE9 assign\xE9 \xE0 une t\xE2che tr\xE8s sp\xE9ciale.
+    Des terroristes se cachent dans la population, et il faut \xE9liminer la menace
+    qu'ils repr\xE9sentent. Nos agents infiltr\xE9s ont identifi\xE9 le masque qu'ils
+    utilisent pour se reconna\xEEtre. C'est \xE0 vous de les d\xE9truire ! Mais attention
+    \xE0 ne pas faire de victimes innocentes..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
