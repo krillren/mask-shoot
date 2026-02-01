@@ -21,6 +21,6 @@ public class Confiance : MonoBehaviour
     {
         confiance -= lossPerSeconds * Time.deltaTime;
         progressBar.UpdateBar(confiance);
-        if (confiance <= 0f) GameManagerScript.Instance.EndGame();
+        if (confiance <= 0f) GameManagerScript.Instance.LoseGame();
     }
 }

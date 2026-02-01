@@ -149,6 +149,14 @@ public class GameManagerScript : MonoBehaviour
     {
         Mask mask = character.equippedMask;
 
+        if (targetedMask.Contains(mask)) {
+            confiance.AddConfiance(confianceGains);
+        }
+        else
+        {
+            mechant.WarnForCasualties();
+        }
+
         if (mask != null && alivePerMask.ContainsKey(mask))
         {
             alivePerMask[mask]--;
@@ -160,13 +168,7 @@ public class GameManagerScript : MonoBehaviour
                 AddTargetedMask();
             }
         }
-        if (targetedMask.Contains(mask)) {
-            confiance.AddConfiance(confianceGains);
-        }
-        else
-        {
-            mechant.WarnForCasualties();
-        }
+        
         Destroy(character.gameObject);
     }
 
@@ -210,16 +212,16 @@ public class GameManagerScript : MonoBehaviour
 
         if (aliveEntities <= 0)
         {
-            EndGame();
+            miniSceneManager.LoadWinCitizensDied();
         }
     }
 
     public void KillBadGuy()
     {
-        EndGame();
+        miniSceneManager.LoadWinMechantDied();
     }
 
-    public void EndGame()
+    public void LoseGame()
     {
         Debug.Log("Game Over");
         miniSceneManager.LoadLoose();

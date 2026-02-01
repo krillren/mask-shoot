@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Mask
   maskName: Mask 2
   maskID: 2
-  maskSprite: {fileID: -8932950432273405201, guid: 646f5edfa2c2517419c7f0c36927338b, type: 3}
+  maskSprite: {fileID: 21300000, guid: 646f5edfa2c2517419c7f0c36927338b, type: 3}
