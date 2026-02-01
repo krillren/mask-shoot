@@ -7,9 +7,9 @@ public class SpawnManagerScript : MonoBehaviour
     public GameObject Prefab;
     public Camera cam;
 
-    private int _entityCount = 20;
+    public int _entityCount = 30;
 
-    public float timeBetweenSpawns = 5;
+    public float timeBetweenSpawns = 2;
     private float _timeSinceLastSpawn = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
