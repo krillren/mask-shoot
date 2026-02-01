@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80cb1d962f2b3104f898a4a2f79717bf, type: 3}
-  m_Name: TestMask
+  m_Name: mask2
   m_EditorClassIdentifier: Assembly-CSharp::Mask
-  maskName: Test
-  maskID: 0
-  maskSprite: {fileID: -5313610575530363566, guid: 73208db1949fe5041bc6d8d030796bae, type: 3}
+  maskName: Mask 2
+  maskID: 2
+  maskSprite: {fileID: -8932950432273405201, guid: 646f5edfa2c2517419c7f0c36927338b, type: 3}
