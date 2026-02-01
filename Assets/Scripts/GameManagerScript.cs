@@ -11,10 +11,11 @@ public class GameManagerScript : MonoBehaviour
     public SpawnManagerScript SpawnManagerScript;
     public Confiance confiance;
     public Mechant mechant;
+    public int EntitySpawnAfterTargetChange = 10;
 
     [Header("Masks")]
     public List<Mask> AllMask;
-    public float maskIntroInterval = 10f;
+    public float maskIntroInterval = 7f;
    
 
 
@@ -25,7 +26,7 @@ public class GameManagerScript : MonoBehaviour
 
     // How many alive characters per mask
     private Dictionary<Mask, int> alivePerMask = new();
-    private List<Mask> targetedMask = new();
+    public List<Mask> targetedMask = new();
     private Coroutine maskRoutine;
     private int aliveEntities;
     public float confianceGains = 3f;
@@ -52,7 +53,7 @@ public class GameManagerScript : MonoBehaviour
     private void Start()
     {
         maskRoutine = StartCoroutine(MaskProgressionRoutine());
-        
+        StartCoroutine(AddTargetCoroutine(15f));
     }
 
 
@@ -180,12 +181,9 @@ public class GameManagerScript : MonoBehaviour
     }
     public void AddTargetedMask()
     {
-        Mask randomMask = GetRandomMaskFromPool();
+        if (targetedMask.Count >= 3) return;
 
-        if (randomMask is null)
-        {
-            return;
-        }
+        Mask randomMask = GetRandomMaskFromPool();
 
         int i = 0;
         while (targetedMask.Contains(randomMask) && i<10)
@@ -193,15 +191,18 @@ public class GameManagerScript : MonoBehaviour
             randomMask = GetRandomMaskFromPool();
             i++;
         }
+        if (randomMask is null || i == 10) return;
+
         targetedMask.Add(randomMask);
-        maskTargetDisplay.AddTarget(randomMask);
+        maskTargetDisplay.Render(targetedMask);
         mechant.UpdateNewTargets();
+        SpawnManagerScript.SpawnEntities(EntitySpawnAfterTargetChange);
     }
 
     public void RemoveTargetedMask(Mask mask)
     {
         targetedMask.Remove(mask);
-        maskTargetDisplay.RemoveTarget(mask);
+        maskTargetDisplay.Render(targetedMask);
         mechant.CongratulateTargetAchieved();
     }
     public void OnCharacterHit(CharacterMask character)
