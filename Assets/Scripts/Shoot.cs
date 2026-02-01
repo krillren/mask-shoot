@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class Shoot : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Shoot : MonoBehaviour
 
     public float radius;
     public GameObject BloodFX;
+    public GameObject bloodDecalPrefab;
+    public Sprite[] bloodSprites;
     private void Start()
     {
     }
@@ -49,11 +52,23 @@ public class Shoot : MonoBehaviour
         {
             CharacterMask mask = hit.GetComponent<CharacterMask>();
             mask?.Hit();
-            if(mask != null ) Instantiate(BloodFX, pos,Quaternion.identity);
+            if (mask != null)
+            {
+                Instantiate(BloodFX, pos, Quaternion.identity);
+                SpawnBloodSplash(pos);
+            }
 
             Mechant mechant = hit.GetComponent<Mechant>();
             mechant?.Hit();
             
         }
+    }
+
+    public void SpawnBloodSplash(Vector2 position)
+    {
+        GameObject decal = Instantiate(bloodDecalPrefab, position, Quaternion.identity);
+        SpriteRenderer sr = decal.GetComponent<SpriteRenderer>();
+        sr.sprite = bloodSprites[Random.Range(0, bloodSprites.Length)];
+        decal.transform.localScale = decal.transform.localScale * Random.Range(0.9f, 1.2f);
     }
 }

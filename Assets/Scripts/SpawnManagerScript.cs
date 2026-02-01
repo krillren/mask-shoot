@@ -7,18 +7,15 @@ public class SpawnManagerScript : MonoBehaviour
     public GameObject Prefab;
     public Camera cam;
 
-    private int _entityCount = 20;
+    public int _entityCount = 30;
 
-    public float timeBetweenSpawns = 5;
+    public float timeBetweenSpawns = 2;
     private float _timeSinceLastSpawn = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 0; i < _entityCount; ++i)
-        {
-            SpawnEntity();
-        }
+        SpawnEntities(_entityCount);
     }
 
     // Update is called once per frame
@@ -33,7 +30,15 @@ public class SpawnManagerScript : MonoBehaviour
         }
     }
 
-    void SpawnEntity(){
+    public void SpawnEntities(int amount)
+    {
+        for (int i = 0 ; i < amount; ++i)
+        {
+            SpawnEntity();
+        }
+    }
+
+    private void SpawnEntity(){
         Vector3 worldMin = cam.ScreenToWorldPoint(new Vector2(0, 0));
         Vector3 worldMax = cam.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
 
