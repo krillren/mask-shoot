@@ -527,6 +527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "M\xE9chant"
       objectReference: {fileID: 0}
+    - target: {fileID: 7841946316833755004, guid: 3bb535fc4495c5c4cb1d55f87fdaafdd, type: 3}
+      propertyPath: confiance
+      value: 
+      objectReference: {fileID: 6008770454204491047}
     - target: {fileID: 8009934755118618002, guid: 3bb535fc4495c5c4cb1d55f87fdaafdd, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.6246
@@ -788,6 +792,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 348624578515574144, guid: 9a127a138b556384688c25975e399100, type: 3}
+      propertyPath: lowTrustMax
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 348624578515574144, guid: 9a127a138b556384688c25975e399100, type: 3}
+      propertyPath: lowTrustStart
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2392591890588141846, guid: 9a127a138b556384688c25975e399100, type: 3}
       propertyPath: m_Name
       value: Confiance

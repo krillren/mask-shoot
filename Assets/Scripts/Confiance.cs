@@ -6,6 +6,8 @@ public class Confiance : MonoBehaviour
     public float confiance;
     public float lossPerSeconds;
     public ChargeBar progressBar;
+    public bool lowTrustStart = false;
+    public float lowTrustMax;
     
     void Start()
     {
@@ -19,8 +21,13 @@ public class Confiance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        confiance -= lossPerSeconds * Time.deltaTime;
+        var loss = lossPerSeconds * Time.deltaTime;
+
+        lowTrustStart = confiance > lowTrustMax && confiance - loss <= lowTrustMax;
+
+        confiance -= loss;
         progressBar.UpdateBar(confiance);
         if (confiance <= 0f) GameManagerScript.Instance.LoseGame();
+
     }
 }
