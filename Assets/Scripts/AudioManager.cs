@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep between scenes
+            //DontDestroyOnLoad(gameObject); // Keep between scenes
         }
         else
         {
