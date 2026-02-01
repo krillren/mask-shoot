@@ -35,15 +35,19 @@ public class Mechant : MonoBehaviour
         switch (Life)
         {
             case 0:
+                AudioManager.Instance.StopMusicForDuration(2.3f);
+                AudioManager.Instance.PlayMechantDeath();
                 target_sr.sprite = Dead;
                 GameManagerScript.Instance.KillBadGuy();
                 textDialog.ShowText("Soupir", 3);
                 break;
             case 1 :
+                AudioManager.Instance.PlayOuch2();
                 textDialog.ShowText("Arrête ça connard !", 3);
                 target_sr.sprite = SecondHit;
             break;
             case 2 :
+                AudioManager.Instance.PlayOuch1();
                 target_sr.sprite = FirstHit;
                 textDialog.ShowText("C'est pas du vrai boulot, ça ! Il va falloir vous ressaisir, et vite !", 3);
                 break;

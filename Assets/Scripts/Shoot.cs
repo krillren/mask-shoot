@@ -62,19 +62,6 @@ public class Shoot : MonoBehaviour
 
             Mechant mechant = hit.GetComponent<Mechant>();
             mechant?.Hit();
-            if (mechant != null)
-            {
-                var random_number = Random.Range(0, 100);
-
-                if (random_number < 50)
-                {
-                    AudioManager.Instance.PlayOuch1();
-                }
-                else
-                {
-                    AudioManager.Instance.PlayOuch2();
-                }
-            }
         }
     }
 

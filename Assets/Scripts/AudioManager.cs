@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip newTarget;
     public AudioClip ouch1;
     public AudioClip ouch2;
+    public AudioClip mechantDeath;
 
     private void Awake()
     {
@@ -52,10 +54,27 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
-    // Optional: convenience methods for specific SFX
+    // Convenience methods for specific SFX
     public void PlayBombDescentExplosion() => PlaySFX(bombDescentExplosion);
     public void PlayKill() => PlaySFX(kill);
     public void PlayNewTarget() => PlaySFX(newTarget);
     public void PlayOuch1() => PlaySFX(ouch1);
     public void PlayOuch2() => PlaySFX(ouch2);
+    public void PlayMechantDeath() => PlaySFX(mechantDeath);
+
+    // --- Pause/Stop music for a duration ---
+    public void StopMusicForDuration(float duration)
+    {
+        StartCoroutine(StopMusicCoroutine(duration));
+    }
+
+    private IEnumerator StopMusicCoroutine(float duration)
+    {
+        if (musicSource.isPlaying)
+            musicSource.Pause(); // Pause the music
+
+        yield return new WaitForSeconds(duration); // Wait for the given duration
+
+        musicSource.UnPause(); // Resume music
+    }
 }
