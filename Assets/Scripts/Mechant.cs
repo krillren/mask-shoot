@@ -7,6 +7,8 @@ public class Mechant : MonoBehaviour
     public Sprite Dead;
     public TextDialog textDialog;
 
+    public Confiance confiance;
+
     public Sprite CurrentSprite;
     public SpriteRenderer target_sr;
     public int Life = 3;
@@ -20,6 +22,10 @@ public class Mechant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (confiance.lowTrustStart)
+        {
+            textDialog.ShowText("Allez, plus vite que ça !!", 3);
+        }
     }
 
     public void Hit()

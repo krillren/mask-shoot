@@ -17,7 +17,7 @@ public class GameManagerScript : MonoBehaviour
     public List<Mask> AllMask;
     public float maskIntroInterval = 7f;
    
-
+    //private AudioManager audioManager;
 
     private List<Mask> AvailableMasks = new();
 
@@ -47,7 +47,7 @@ public class GameManagerScript : MonoBehaviour
         AddRandomMaskToPool();
 
         AddTargetedMask();
-
+        AudioManager.Instance.PlayNewTarget();
     }
 
     private void Start()

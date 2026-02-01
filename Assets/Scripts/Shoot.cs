@@ -34,6 +34,7 @@ public class Shoot : MonoBehaviour
     private IEnumerator ShootDown(Vector3 position)
     {
         isShooting = true;
+        AudioManager.Instance.PlayBombDescentExplosion();
         targetReshape.ShootReshape(position,duration);
         yield return new WaitForSeconds(duration);
         ParticleShoot.transform.position = position;
@@ -56,11 +57,24 @@ public class Shoot : MonoBehaviour
             {
                 Instantiate(BloodFX, pos, Quaternion.identity);
                 SpawnBloodSplash(pos);
+                AudioManager.Instance.PlayKill();
             }
 
             Mechant mechant = hit.GetComponent<Mechant>();
             mechant?.Hit();
-            
+            if (mechant != null)
+            {
+                var random_number = Random.Range(0, 100);
+
+                if (random_number < 50)
+                {
+                    AudioManager.Instance.PlayOuch1();
+                }
+                else
+                {
+                    AudioManager.Instance.PlayOuch2();
+                }
+            }
         }
     }
 
