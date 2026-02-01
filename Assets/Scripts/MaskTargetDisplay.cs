@@ -4,24 +4,7 @@ using UnityEngine;
 
 public class MaskTargetDisplay : MonoBehaviour
 {
-    public Dictionary<Mask,SpriteRenderer> maskTargets;
     public List<SpriteRenderer> spriteRenderers;
-    public List<Mask> masksDisplayed;
-    private void Awake()
-    {
-        masksDisplayed = new();
-    }
-    public void AddTarget(Mask mask)
-    {
-        masksDisplayed.Add(mask);
-        Render(masksDisplayed);
-    }
-
-    public void RemoveTarget(Mask mask)
-    {
-        masksDisplayed.Remove(mask);
-        Render(masksDisplayed);
-    }
 
     public void Render(List<Mask> masks)
     {
